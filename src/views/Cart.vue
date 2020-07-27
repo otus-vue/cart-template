@@ -13,20 +13,29 @@
         </tr>
       </thead>
       <tbody>
-        <Cart-row></Cart-row>
+        <Cart-row
+          :cart-item="item"
+          v-for="item in items"
+          :key="item.id"
+        ></Cart-row>
       </tbody>
     </table>
 
-    <h1 class="text-right">Сумма { totalSum }</h1>
+    <h1 class="text-right">Сумма {{ totalSum }}</h1>
   </div>
 </template>
 
 <script>
 import CartRow from "./CartRow";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   components: {
     CartRow
+  },
+  computed: {
+    ...mapState("cart", ["items"]),
+    ...mapGetters("cart", ["totalSum"])
   }
 };
 </script>

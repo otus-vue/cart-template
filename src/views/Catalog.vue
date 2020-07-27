@@ -13,7 +13,11 @@
         </tr>
       </thead>
       <tbody>
-        <Catalog-row></Catalog-row>
+        <Catalog-row
+          :item="item"
+          v-for="item in items"
+          :key="item.id"
+        ></Catalog-row>
       </tbody>
     </table>
   </div>
@@ -21,10 +25,14 @@
 
 <script>
 import CatalogRow from "./CatalogRow";
+import { mapState } from "vuex";
 
 export default {
   components: {
     CatalogRow
+  },
+  computed: {
+    ...mapState("catalog", ["items"])
   }
 };
 </script>

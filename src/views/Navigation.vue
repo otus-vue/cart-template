@@ -11,7 +11,12 @@
           </li>
           <li class="nav-item">
             <router-link to="/cart" class="nav-link"
-              >Корзина <span class="badge badge-info">0</span></router-link
+              >Корзина
+              <span
+                class="badge badge-info"
+                v-show="$store.state.cart.items.length > 0"
+                >{{ $store.state.cart.items.length }}</span
+              ></router-link
             >
           </li>
         </ul>
