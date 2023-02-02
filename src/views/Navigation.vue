@@ -8,7 +8,7 @@
           </li>
           <li class="nav-item">
             <router-link to="/cart" class="nav-link"
-              >Корзина <span class="badge badge-info">0</span></router-link
+              >Корзина <span class="badge badge-info">{{ cart.cartItemsCount }}</span></router-link
             >
           </li>
         </ul>
@@ -17,8 +17,8 @@
   </nav>
 </template>
 
-<style lang="scss" scoped></style>
+<script setup>
+import {useCartStore} from "@/stores/cart";
 
-<script>
-export default {};
+const cart = useCartStore()
 </script>
