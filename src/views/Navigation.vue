@@ -8,7 +8,11 @@
           </li>
           <li class="nav-item">
             <router-link to="/cart" class="nav-link"
-              >Корзина <span class="badge badge-info">0</span></router-link
+              >Корзина
+              <span class="badge badge-info">
+                {{ idsCount }} @ {{ totalCount }}
+              </span>
+            </router-link
             >
           </li>
         </ul>
@@ -19,6 +23,9 @@
 
 <style lang="scss" scoped></style>
 
-<script>
-export default {};
+<script setup>
+import {useCartStore} from "@/stores/cart";
+import {storeToRefs} from "pinia";
+
+const { idsCount, totalCount } = storeToRefs(useCartStore())
 </script>

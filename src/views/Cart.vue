@@ -13,20 +13,21 @@
         </tr>
       </thead>
       <tbody>
-        <Cart-row></Cart-row>
+        <Cart-row v-for="item in cart"
+                  :key="item.id"
+                  :item="item"></Cart-row>
       </tbody>
     </table>
 
-    <h1 class="text-right">Сумма { totalSum }</h1>
+    <h1 class="text-right">Сумма {{ totalSum }}</h1>
   </div>
 </template>
 
-<script>
+<script setup>
 import CartRow from "./CartRow.vue";
+import {useCartStore} from "@/stores/cart";
+import {storeToRefs} from "pinia";
 
-export default {
-  components: {
-    CartRow
-  }
-};
+const {cart, totalSum} = storeToRefs(useCartStore())
+
 </script>
