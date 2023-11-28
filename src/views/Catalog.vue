@@ -1,7 +1,7 @@
 <template>
   <div class="catalog">
-    <h1>Catalog</h1>
-    <table class="table">
+    <h1 @click="resetCatalog">Catalog</h1>
+    <table class="table" v-if="!catalogStore.isLoading">
       <thead>
         <tr>
           <th>Артикул</th>
@@ -13,18 +13,19 @@
         </tr>
       </thead>
       <tbody>
-        <Catalog-row></Catalog-row>
+        <Catalog-row v-for="item in catalogStore.catalog"
+                     :key="item.id"
+                     :item="item"
+        ></Catalog-row>
       </tbody>
     </table>
+    <h1 v-else>Loading ...</h1>
   </div>
 </template>
 
-<script>
+<script setup>
 import CatalogRow from "./CatalogRow.vue";
+import {useCatalogStore} from "@/stores/catalog";
 
-export default {
-  components: {
-    CatalogRow
-  }
-};
+const catalogStore = useCatalogStore()
 </script>
